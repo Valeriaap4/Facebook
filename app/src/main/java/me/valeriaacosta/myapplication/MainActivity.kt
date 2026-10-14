@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import me.valeriaacosta.myapplication.ui.screens.FacebookLoginScreen
+import me.valeriaacosta.myapplication.ui.screens.FacebookRegisterScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,10 +24,14 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxSize()
             ) {
                 composable (route = "login"){
-                    FacebookLoginScreen(navController = myNavController)
+                    FacebookLoginScreen(onClickRegister = {
+                        myNavController.navigate(route = "register")
+                    })
                 }
                 composable (route = "register"){
-                    FacebookRegisterScreen(navController = myNavController )
+                    FacebookRegisterScreen(onClickBack = {
+                        myNavController.popBackStack()
+                    })
                 }
             }
         }
