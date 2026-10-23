@@ -21,26 +21,26 @@ class MainActivity : ComponentActivity() {
             val myNavController = rememberNavController()
             NavHost(
                 navController = myNavController,
-                startDestination = "login",
+                startDestination = Routes.LOGIN,
                 modifier = Modifier.fillMaxSize()
             ) {
-                composable (route = "login"){
+                composable (route = Routes.LOGIN){
                     FacebookLoginScreen(onClickRegister = {
-                        myNavController.navigate(route = "register")
+                        myNavController.navigate(route = Routes.REGISTER)
                     }, onClickIniciarSesion = {
-                        myNavController.navigate(route = "feed"){
-                            popUpTo(route = "login") {
+                        myNavController.navigate(route = Routes.FEED){
+                            popUpTo(route = Routes.LOGIN) {
                                 inclusive = true
                             }
                         }
                     })
                 }
-                composable (route = "register"){
+                composable (route = Routes.REGISTER){
                     FacebookRegisterScreen(onClickBack = {
                         myNavController.popBackStack()
                     }   )
                 }
-                composable ( route = "Feed"){
+                composable ( route = Routes.FEED){
                     FeedScreen()
                 }
             }
